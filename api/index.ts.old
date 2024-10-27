@@ -1,25 +1,14 @@
 const express = require('express');
-const cors = require('cors');
-const rateLimit = require('express-rate-limit');
 const dotenv = require('dotenv');
 const { OpenAI } = require('openai');
 
+// Load environment variables
 dotenv.config();
 
 const app = express();
-
-// Enable CORS for all routes
-app.use(cors());
-
-// Apply rate limiting
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100 // limit each IP to 100 requests per windowMs
-});
-app.use(limiter);
-
 app.use(express.json());
 
+// Initialize OpenAI client
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
@@ -54,3 +43,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+// For demonstration purposes only, don't log sensitive information in production
+console.log('OPENAI_API_KEY:', process.env.OPENAI_API_KEY);
