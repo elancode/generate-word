@@ -8,8 +8,15 @@ dotenv.config();
 
 const app = express();
 
-// Enable CORS for all routes
-app.use(cors());
+const corsOptions = {
+  origin: '*', // Allow all origins (use with caution, better to specify your frontend URL)
+  methods: ['GET', 'POST'], // Specify allowed HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
+  credentials: true, // Allow credentials if needed
+};
+
+app.use(cors(corsOptions));
+
 
 // Apply rate limiting
 const limiter = rateLimit({
