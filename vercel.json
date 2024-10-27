@@ -1,1 +1,17 @@
-{ "version": 2, "rewrites": [{ "source": "/(.*)", "destination": "/api" }] }
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/generate-word",
+      "methods": ["POST", "OPTIONS"],
+      "dest": "/api/generate-word",
+      "headers": {
+        "Access-Control-Allow-Origin": "https://wordgame-six.vercel.app",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        "Access-Control-Allow-Credentials": "true"
+      }
+    }
+  ]
+}
+
