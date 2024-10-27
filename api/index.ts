@@ -36,7 +36,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
-app.post('generate-word/', async (req, res) => {
+app.post('generate-word/api', async (req, res) => {
   try {
     const { currentWord } = req.body;
 
