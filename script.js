@@ -76,7 +76,7 @@ function computerTurn() {
 }
 
 async function generateComputerWord() {
-    const response = await fetch(`https://generate-word-inky.vercel.app/generate-word/${currentWord}`, {
+    const response = await fetch(`https://generate-word-inky.vercel.app/generate-word/api/${currentWord}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
