@@ -15,7 +15,9 @@ const corsOptions = {
   credentials: true, // Allow credentials if needed
 };
 
-app.use('*', cors(corsOptions));
+app.options('*', cors(corsOptions)); // Enable preflight for all routes
+
+app.use(cors(corsOptions));
 
 
 // Apply rate limiting
