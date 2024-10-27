@@ -78,20 +78,24 @@ function computerTurn() {
 async function generateComputerWord() {
     try {
         const response = await fetch(`https://generate-word-inky.vercel.app/generate-word/api/${currentWord}`, {
-            method: 'GET',
+            method: 'POST', // Change to POST if you're sending a body
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify({ currentWord }) // Add the JSON body here
         });
 
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            console.error(`HTTP error! status: ${response.status}`);
+            document.getElementById('messages').textContent = 'Error: Unable to generate a word. Please try again later.';
+            return null; // Return null or a fallback word if needed
         }
 
         const data = await response.json();
         return data.word.trim();
     } catch (error) {
         console.error('Error generating computer word:', error);
+        document.getElementById('messages').textContent = 'Error: Unable to generate a word. Please try again later.';
         return null; // Return null or a fallback word if needed
     }
 }
