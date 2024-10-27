@@ -76,14 +76,24 @@ function computerTurn() {
 }
 
 async function generateComputerWord() {
-    const response = await fetch(`https://generate-word-inky.vercel.app/generate-word/api/${currentWord}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
+    try {
+        const response = await fetch(`https://generate-word-inky.vercel.app/generate-word/api/${currentWord}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-    });
-    const data = await response.json();
-    return data.word.trim();
+
+        const data = await response.json();
+        return data.word.trim();
+    } catch (error) {
+        console.error('Error generating computer word:', error);
+        return null; // Return null or a fallback word if needed
+    }
 }
 
 function validateWord(word, callback) {

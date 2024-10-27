@@ -10,7 +10,7 @@ const app = express();
 
 // Define CORS options
 const corsOptions = {
-  origin: 'https://wordgame-six.vercel.app', // Exact frontend origin
+  origin: '*', // Exact frontend origin
   methods: ['GET', 'POST', 'OPTIONS'], // Include OPTIONS for preflight
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true, // Allow credentials if necessary
@@ -36,7 +36,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
-app.post('/generate-word', async (req, res) => {
+app.post('/generate-word/api', async (req, res) => {
   try {
     const { currentWord } = req.body;
 
