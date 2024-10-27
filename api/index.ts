@@ -15,7 +15,7 @@ const corsOptions = {
   credentials: true, // Allow credentials if needed
 };
 
-app.use(cors(corsOptions));
+app.use('*', cors(corsOptions));
 
 
 // Apply rate limiting
