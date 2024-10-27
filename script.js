@@ -77,12 +77,12 @@ function computerTurn() {
 
 async function generateComputerWord() {
     try {
-        const response = await fetch(`https://generate-word-inky.vercel.app/generate-word/api/${currentWord}`, {
-            method: 'POST', // Change to POST if you're sending a body
+        const response = await fetch('https://generate-word-inky.vercel.app/api', {
+            method: 'POST', // Use POST since you're sending a body
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ currentWord }) // Add the JSON body here
+            body: JSON.stringify({ currentWord }) // Send the currentWord in the body
         });
 
         if (!response.ok) {
