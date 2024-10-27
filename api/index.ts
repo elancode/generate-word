@@ -8,16 +8,19 @@ dotenv.config();
 
 const app = express();
 
+// Define CORS options
 const corsOptions = {
-  origin: '*', // Allow all origins (use with caution, better to specify your frontend URL)
-  methods: ['GET', 'POST'], // Specify allowed HTTP methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
-  credentials: true, // Allow credentials if needed
+  origin: 'https://wordgame-six.vercel.app', // Exact frontend origin
+  methods: ['GET', 'POST', 'OPTIONS'], // Include OPTIONS for preflight
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true, // Allow credentials if necessary
 };
 
-app.options('*', cors(corsOptions)); // Enable preflight for all routes
-
+// Enable CORS for all routes
 app.use(cors(corsOptions));
+
+// Explicitly handle preflight requests
+app.options('*', cors(corsOptions));
 
 
 // Apply rate limiting
